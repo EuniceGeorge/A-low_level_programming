@@ -32,7 +32,7 @@ void execute_command(char **cmd, char **path_list, int num_paths) {
 	      }
 	  }
 
-	if (command_found) {
+	if (command_found && full_path) {
 		pid_t child_pid = fork();
 		if (child_pid == -1) {
 			perror("fork");
@@ -49,9 +49,13 @@ void execute_command(char **cmd, char **path_list, int num_paths) {
 	  waitpid(child_pid, &status, 0);
 	  }
 	} else {
-	/* Command not found in any directory*/
+	/* Command not found in any directory or memory allocation failed*/
+		if (!full_path) {
+		       	printf("Memory allocation failed.\n");
+		} else {
 	printf("Command not found: %s\n", cmd[0]);
 	}
-	if (full_path)	  
+	}
+/*	if (full_path)	  */
          free(full_path);
 }

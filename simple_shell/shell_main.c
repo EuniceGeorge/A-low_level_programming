@@ -34,11 +34,11 @@ int main(void) {
             printf("\n");
             free(input);
 
-	    while (num_paths > 0) {
+	/*    while (num_paths > 0) {
                 free(path_list[num_paths - 1]);
                 num_paths--;
             }
-            free(path_list);
+            free(path_list);*/
 
             break;
 
