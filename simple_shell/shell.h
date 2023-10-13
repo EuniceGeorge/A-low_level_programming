@@ -10,10 +10,14 @@
 
 #define MAX_INPUT_LENGTH 100
 
+extern char **environ;
+
 void display_prompt();
 void execute_command(char **cmd, char **path_list, int num_paths);
 char **parse_input(char *input);
 void free_command(char **cmd);
-
+void handle_exit_command(char **cmd);
+int is_builtin_command(char *cmd);
+void handle_env_command();
 
 #endif

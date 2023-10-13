@@ -47,15 +47,22 @@ int main(void) {
         input[strcspn(input, "\n")] = '\0';
 
         cmd = parse_input(input);
-
-        execute_command(cmd, path_list, num_paths);
+	if (strcmp(cmd[0], "exit") == 0) {
+	       	handle_exit_command(cmd);
+	} else if (strcmp(cmd[0], "env") == 0) {
+		handle_env_command();
+	} else {
+		execute_command(cmd, path_list, num_paths);
 
         free_command(cmd);
     }
+
     while (num_paths > 0) {
         free(path_list[num_paths - 1]);
         num_paths--;
     }
     free(path_list);
+    }
     return 0;
 }
+
