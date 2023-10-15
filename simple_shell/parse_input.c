@@ -17,8 +17,12 @@ char **parse_input(char *input) {
     }
 
     token = strtok(input, " \t\n");
-    while (token != NULL) {
+    while (token != NULL && i < (MAX_INPUT_LENGTH / 2)) {
         cmd[i] = strdup(token);
+	if (!cmd[i]) {
+            perror("strdup");
+            exit(EXIT_FAILURE);
+	}
         i++;
         token = strtok(NULL, " \t\n");
     }

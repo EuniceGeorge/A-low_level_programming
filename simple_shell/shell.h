@@ -18,6 +18,6 @@ char **parse_input(char *input);
 void free_command(char **cmd);
 void handle_exit_command(char **cmd);
 int is_builtin_command(char *cmd);
-void handle_env_command();
-
+void print_environment();
+char *check_command_exists(char *cmd);
 #endif

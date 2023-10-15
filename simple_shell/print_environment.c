@@ -3,10 +3,10 @@
 /**
  * print_environment - Prints the current environment variables.
  */
-
-void handle_env_command() {
+void print_environment() {
     char **env = environ;
-       while (*env) {
+
+    while (*env) {
         printf("%s\n", *env);
         env++;
     }
