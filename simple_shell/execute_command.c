@@ -8,8 +8,8 @@
  * @param num_paths: The number of directories in path_list.
  */
 
-void execute_command(char **cmd, char **path_list, int num_paths) {
-    char *full_path = NULL;
+void execute_command(char **cmd, char **path_list, int num_paths){
+	char *full_path = NULL;
     int command_found = 0;
     int i = 0;
     pid_t pid;

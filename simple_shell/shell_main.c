@@ -13,9 +13,7 @@ int main(void) {
 	char *token;
 	char **cmd;
 	char **path_list = NULL;
-	int i = 0, num_paths = 0;
-
-	int interactive_mode = isatty(STDIN_FILENO);
+	int num_paths = 0;
 
 	token = strtok(path, ":");
 
@@ -36,18 +34,11 @@ int main(void) {
     }
 
     while (1) {
-	    if (interactive_mode)
+	    if (isatty(STDIN_FILENO))
 	display_prompt();
 	 if (getline(&input, &input_len, stdin) == -1) {
             printf("\n");
             free(input);
-
-            while (i < num_paths) {
-                free(path_list[i]);
-                i++;
-            }
-            free(path_list);
-
             break; 
         }
 
@@ -64,12 +55,16 @@ int main(void) {
         }
         cmd = parse_input(input);
 	if (strcmp(cmd[0], "exit") == 0) {
+		if (cmd[1] != NULL) {
+              int status = atoi(cmd[1]);
             free_command(cmd);
+	    exit(status);
             free(input);
+	}
             break;
         } else {
 
-        execute_command(cmd, path_list, num_paths);
+      execute_command(cmd, path_list, num_paths);
 	 free_command(cmd);
     }
     }
