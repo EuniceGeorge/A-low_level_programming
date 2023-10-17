@@ -21,6 +21,8 @@ void free_command(char **cmd);
 void handle_exit_command(char **cmd);
 int is_builtin_command(char *cmd);
 void print_environment();
-char *check_command_exists(char *cmd);
 char *filecheck (char *str);
+
+int set_environment_variable(char *variable, char *value);
+int unset_environment_variable(char *variable);
 #endif

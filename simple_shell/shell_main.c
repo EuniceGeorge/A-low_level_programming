@@ -62,6 +62,20 @@ int main(void) {
             free(input);
 	}
             break;
+	}else if (strcmp(cmd[0], "setenv") == 0) {
+            if (cmd[1] != NULL && cmd[2] != NULL) {
+                if (set_environment_variable(cmd[1], cmd[2]) == 0)
+                    fprintf(stderr, "Environment variable set: %s=%s\n", cmd[1], cmd[2]);
+            } else {
+                fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
+            }
+        } else if (strcmp(cmd[0], "unsetenv") == 0) {
+            if (cmd[1] != NULL) {
+                if (unset_environment_variable(cmd[1]) == 0)
+                    fprintf(stderr, "Environment variable unset: %s\n", cmd[1]);
+            } else {
+                fprintf(stderr, "Usage: unsetenv VARIABLE\n");
+            }
         } else {
 
       execute_command(cmd, path_list, num_paths);
