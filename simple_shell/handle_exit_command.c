@@ -1,11 +1,17 @@
 #include "shell.h"
 
-void handle_exit_command(char **cmd) {
-    int status = 0;
+/*
+ * handle_exit_command- handles the exit function
+ * @cmd: the string to be passed
+ */
 
-     if (cmd[1] != NULL) {
-        status = atoi(cmd[1]);
-    }
+void handle_exit_command(char **cmd)
+{
+	int status = 0;
 
-    exit(status);
+	if (cmd[1] != NULL)
+	{
+		status = atoi(cmd[1]);
+	}
+	exit(status);
 }
