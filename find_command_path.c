@@ -15,7 +15,7 @@ char *find_command_path(const char *cmd, char **path_list, int num_paths)
 
 	for (i = 0; i < num_paths; i++)
 	{
-		full_path = malloc(strlen(path_list[i]) + strlen(cmd) + 2);
+		full_path = malloc(strlen(path_list[i]) + _strlen(cmd) + 2);
 		if (!full_path)
 		{
 			perror("malloc");

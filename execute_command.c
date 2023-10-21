@@ -5,6 +5,7 @@
  * @full_path: The full path of the command.
  * @cmd: The command and its arguments as an array.
  */
+
 void execute_command(char *full_path, char **cmd)
 {
 	pid_t pid = fork();

@@ -19,9 +19,9 @@ int main(void)
 	while (token != NULL)
 	{
 		path_list = realloc(path_list, (num_paths + 1) * sizeof(char *));
-		if (!path_list || !(path_list[num_paths] = strdup(token)))
+		if (!path_list || !(path_list[num_paths] = _strdup(token)))
 		{
-			perror(!path_list ? "realloc" : "strdup")
+			perror(!path_list ? "realloc" : "_strdup");
 				exit(EXIT_FAILURE);
 		}
 		num_paths++;
@@ -31,26 +31,26 @@ int main(void)
 	{
 		if (isatty(STDIN_FILENO))
 			display_prompt();
-		if (getline(&input, &input_len, stdin) == -1)
+		if (get_line(&input, &input_len, stdin) == -1)
 		{
 			printf("\n");
 			free(input);
 			break;
 		}
 		input[strcspn(input, "\n")] = '\0';
-		if (strcmp(input, "exit") == 0)
+		if (_strcmp(input, "exit") == 0)
 		{
 			free(input);
 			break;
 		}
-		if (strcmp(input, "env") == 0)
+		if (_strcmp(input, "env") == 0)
 		{
 			print_environment();
 			free(input);
 			continue;
 		}
 		cmd = parse_input(input);
-		if (strcmp(cmd[0], "exit") == 0)
+		if (_strcmp(cmd[0], "exit") == 0)
 		{
 			if (cmd[1] != NULL)
 			{
@@ -60,7 +60,7 @@ int main(void)
 				exit(status);
 			}
 			break;
-		} else if (strcmp(cmd[0], "setenv") == 0)
+		} else if (_strcmp(cmd[0], "setenv") == 0)
 		{
 			if (cmd[1] != NULL && cmd[2] != NULL)
 			{
@@ -70,7 +70,7 @@ int main(void)
 			{
 				fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
 			}
-		} else if (strcmp(cmd[0], "unsetenv") == 0)
+		} else if (_strcmp(cmd[0], "unsetenv") == 0)
 		{
 			if (cmd[1] != NULL)
 			{
@@ -87,7 +87,7 @@ int main(void)
 			if (full_path)
 			{
 				execute_command(full_path, cmd);
-				free(full_path);
+				/*free(full_path);*/
 			} else
 			{
 				printf("Command not found: %s\n", cmd[0]);

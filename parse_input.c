@@ -20,7 +20,7 @@ char **parse_input(char *input)
 	token = strtok(input, " \t\n");
 	while (token != NULL && i < (MAX_INPUT_LENGTH / 2))
 	{
-		cmd[i] = strdup(token);
+		cmd[i] = _strdup(token);
 		if (!cmd[i])
 		{
 			perror("strdup");
